@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const fetcher = async (url: string): Promise<IUser[]> => {
-  const res = await fetch(url);
+  const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) {
     throw new Error('Error al obtener los datos');
   }
