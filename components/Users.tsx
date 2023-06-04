@@ -5,9 +5,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { use } from "react";
 
+const url = `${process.env.NEXT_PUBLIC_SITE_URL}/api/user`
+
 const getUsers = async () => {
   // await new Promise((resolve) => setTimeout(resolve, 1000));
-  const res = await fetch("http://localhost:3000/api/user",
+  const res = await fetch(url,
     { 
       cache: "force-cache"
     }
