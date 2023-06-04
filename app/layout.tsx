@@ -1,3 +1,4 @@
+import { DefaultLayout } from '@/components/DefaultLayout '
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -15,7 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={inter.className}
+      >
+        <DefaultLayout>
+          {children}
+        </DefaultLayout>
+      </body>
     </html>
   )
 }

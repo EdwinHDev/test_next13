@@ -5,14 +5,14 @@ import User from '@/model/User';
 export async function GET() {
 
   await connect();
-  const users = await User.find().lean();
+  const users = await User.find();
 
   if(!users) {
-    return new Response('Ya existe un usuario con ese nombre', { status: 400 });
+    return new Response('No hay usuarios para mostrar', { status: 400 });
   }
 
   try {
-    return NextResponse.json(users);
+    return NextResponse.json(users, { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response('Algo salio mal, intenta más tarde', { status: 500 });
