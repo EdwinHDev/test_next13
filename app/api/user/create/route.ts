@@ -1,5 +1,5 @@
 import { idGenerate } from '@/utils/idGenerate';
-import { connect, disconnect } from '../../../../dataBase/db';
+import { connect } from '../../../../dataBase/db';
 import User from '@/model/User';
 import { NextResponse } from 'next/server';
 
@@ -26,7 +26,6 @@ export async function POST(request: Request) {
   const user = await User.findOne({id});
 
   if(user) {
-    await disconnect();
     return new Response('Ya existe un usuario con ese nombre', { status: 401 });
   }
 
@@ -40,7 +39,6 @@ export async function POST(request: Request) {
 
   try {
     await newUser.save();
-    await disconnect();
     // return new Response('Usuario creado correctamente', { status: 200 });
     return NextResponse.json("Usuario creado correctamente");
   } catch (error) {

@@ -1,4 +1,4 @@
-import { connect, disconnect } from '../../../../dataBase/db';
+import { connect } from '../../../../dataBase/db';
 import User from '@/model/User';
 
 export async function PUT(request: Request) {
@@ -24,7 +24,6 @@ export async function PUT(request: Request) {
   const user = await User.findOne({id});
 
   if(!user) {
-    await disconnect();
     return new Response('No existe ese usuario', { status: 400 });
   }
 
@@ -35,7 +34,6 @@ export async function PUT(request: Request) {
 
   try {
     user.updateOne();
-    await disconnect();
     return new Response('Usuario editado correctamente', { status: 200 });
   } catch (error) {
     console.log(error);
